@@ -1,0 +1,1 @@
+* The server communication is not restful by arbitrary decision.
