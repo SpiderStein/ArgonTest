@@ -8,6 +8,7 @@
   "author": "Idan Steinberg",
   "license": "MIT",
   "dependencies": {
+    "@octokit/core": "^3.5.0",
     "fastify": "^2.14.1",
     "lodash": "^4.17.21"
   }

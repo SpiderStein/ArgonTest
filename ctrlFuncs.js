@@ -1,5 +1,5 @@
 const visibilityChange = {
-    method: 'GET',
+    method: 'POST',
     url: '/visibilityChange',
     handler: async function (req, reply) {
         console.log('Visiblity is changed.')

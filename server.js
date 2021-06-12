@@ -5,8 +5,7 @@
  */
 async function run({ fastify, ...deps }) {
     fastify.route(deps.ctrlFuncs.visibilityChange)
-    // const port = process.env.PORT
-    const port = 9999
+    const port = process.env.PORT
     console.log(`Listening on the following port: ${port}`)
     await fastify.listen(Number.parseInt(port))
 }
