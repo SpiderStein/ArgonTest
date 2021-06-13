@@ -13,23 +13,16 @@ function preHandler() {
             return
         }
 
-        setImmediate(async () => {
-            try {
-                await req.octokit.request('PATCH /repos/{owner}/{repo}', {
-                    private: !req.body.repository.private,
-                    owner: req.body.repository.owner.login,
-                    repo: req.body.repository.name,
-                })
-                req.log.info(`Repo is back to its original state`)
-            } catch (error) {
-                req.log.error(error)
-            }
-        })
-
         isVisChangedByServer = true
         done()
     }
 }
+
+// const mac = CryptoJS.HmacSHA256(JSON.stringify(req.body), 'abcd')
+// if (mac === req.headers['x-hub-signature-256']) {
+//     console.log('Hello World')
+// }
+
 
 module.exports = {
     preHandler: preHandler()
