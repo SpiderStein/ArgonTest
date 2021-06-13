@@ -11,7 +11,10 @@ const repoVizEnforce = require('./plugins/repoVisEnforce/plugin')
 async function run({ ...deps }) {
     fastify.register(repoVizEnforce, {
         'deps': {
-            octokit: deps.octokit
+            octokit: deps.octokit,
+            CryptoJS: deps.CryptoJS,
+            sharedSecret: deps.sharedSecret,
+            secureCompare: deps.secureCompare
         }
     })
     console.log(`Listening on the following port: ${deps.port}`)

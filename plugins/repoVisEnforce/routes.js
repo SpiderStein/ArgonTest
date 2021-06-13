@@ -3,7 +3,7 @@ const { preHandler } = require('./hooks')
 const repoVisChanged = {
     method: 'POST',
     url: '/repoVisChanged',
-    preHandler: preHandler,
+    preHandler: [preHandler.isReqAuthenticated, preHandler.isVisChangedByUser],
     /**
      * @param {import("fastify").FastifyRequest} req 
      * @param {import('fastify').FastifyReply} reply 

@@ -10,6 +10,7 @@
   "dependencies": {
     "@octokit/core": "^3.5.0",
     "crypto-js": "^4.0.0",
-    "fastify": "^3.17.0"
+    "fastify": "^3.17.0",
+    "secure-compare": "^3.0.1"
   }
 }

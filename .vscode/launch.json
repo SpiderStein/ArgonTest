@@ -14,7 +14,8 @@
             "program": "${workspaceFolder}/index.js",
             "env": {
                 "PORT": "9999",
-                "GITHUB_ACCOUNT_SECRET": "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"
+                "GITHUB_ACCOUNT_SECRET": "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",
+                "SHARED_SECRET": "abcd"
             },
             "outputCapture": "std"
         }

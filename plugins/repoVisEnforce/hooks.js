@@ -1,4 +1,4 @@
-function preHandler() {
+function isVisChangedByUser() {
 
     let isVisChangedByServer = false
 
@@ -18,12 +18,27 @@ function preHandler() {
     }
 }
 
-// const mac = CryptoJS.HmacSHA256(JSON.stringify(req.body), 'abcd')
-// if (mac === req.headers['x-hub-signature-256']) {
-//     console.log('Hello World')
-// }
+/**
+ * 
+ * @param {import("fastify").FastifyRequest} req 
+ * @param {import("fastify").FastifyReply} reply 
+ * @param {Function} done 
+ */
+function isReqAuthenticated(req, reply, done) {
+    let mac = 'sha256=' + req.CryptoJS.enc.Hex.stringify(req.CryptoJS.HmacSHA256(JSON.stringify(req.body), req.sharedSecret))
+    let a = req.secureCompare(mac, req.headers['x-hub-signature-256'])
+    if (!a) {
+        reply.code(401).send(`request isn't authenticated`)
+        req.log.info(`authentication failed`)
+        return
+    }
+    done()
+}
 
 
 module.exports = {
-    preHandler: preHandler()
+    preHandler: {
+        isVisChangedByUser: isVisChangedByUser(),
+        isReqAuthenticated
+    }
 }
