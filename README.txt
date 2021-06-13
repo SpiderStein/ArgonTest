@@ -1,1 +1,1 @@
-* The server communication is not restful by arbitrary decision.
+* The server communication is not restful because of arbitrary decision.

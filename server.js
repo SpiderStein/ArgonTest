@@ -1,13 +1,21 @@
+const fastify = require('fastify')({
+    logger: true
+})
+const repoVizEnforce = require('./plugins/repoVisEnforce/plugin')
+
 /**
  * 
  * @param {object} param0
  * @param {import("fastify").FastifyInstance} param0.fastify
  */
-async function run({ fastify, ...deps }) {
-    fastify.route(deps.ctrlFuncs.visibilityChange)
-    const port = process.env.PORT
-    console.log(`Listening on the following port: ${port}`)
-    await fastify.listen(Number.parseInt(port))
+async function run({ ...deps }) {
+    fastify.register(repoVizEnforce, {
+        'deps': {
+            octokit: deps.octokit
+        }
+    })
+    console.log(`Listening on the following port: ${deps.port}`)
+    await fastify.listen(Number.parseInt(deps.port))
 }
 
 module.exports = run
